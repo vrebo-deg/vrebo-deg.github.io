@@ -10,6 +10,23 @@
   <body>
     <h1>Prueba JavaScript Kavak</h1>
     <hr />
+
+    <h2>
+      API Fetch
+    </h2>
+    <ol>
+      <li>Codificar y utilizar la Api fetch para traer los datos de  la siguiente dirección: https://facebook.github.io/react-native/movies.json</li>
+      <li>Luego imprimir todas las propiedades del objeto dentro del array movies.</li>
+    </ol>
+    <button onclick="fetchData()">Fetch data</button>
+    <h5 id="raw-data-title" style="display: none;">Raw data</h5>
+    <pre><code id="raw-data"></code></pre>
+
+    <h5 id="movies-list-title" style="display: none;">Movies</h5>
+    <ul id="movies-list"></ul>
+
+    <hr />
+
     <h2>
       The Googlon Language
     </h2>
@@ -34,7 +51,8 @@
       and do not contain the letter u.
     </p>
     <form>
-      <textarea id="text-input" rows="10" cols="100">
+      <label><b>Text to be evaluated</b></label for="text-input"><br />
+      <textarea id="text-input" name="text-input" rows="10" cols="100">
           shoce pq podciy nfwh phfer epgdc dgsloqe do rhfl qhmoixw cmfur qdrulxogji whc ermjdhsx py en yco
           ienqm wjuln dwuch qinhmjul mjxdqfrnlg iygsex qihmu grewyluhfs ucf us xclpedqmi yrx qinexwo qx rqw
           wxflpdn rsogxd cpqmxj lgchqdin fdw nwcrus coj nj qplfjnwidg fwdmslqn cwj hysucxdqm ms hdmwpe
@@ -43,41 +61,13 @@
           lwnepmcg xlmnfqry ghlyopuncw qx iw sionpux cop dmqpchuyf ojxfqhernm ignpeyf rseoyl emjocsild
           rfimdy mwd oewgjfr uo irmcunfgx ylduwpsnh xrdng gcxr ng prfmjicud srdueqhgiy nmodwsqijh dcnql
       </textarea>
-      <button onclick="countPrepositions(event)"></button>
+      <br />
+      <button onclick="countPrepositions(event)">Evaluate Text</button>
     </form>
-    <script>
-      fetch("https://facebook.github.io/react-native/movies.json")
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(myJson) {
-          myJson.movies.forEach((movie, index) => {
-            console.log(`Movie ${index}`);
-            Object.keys(movie).forEach(key => {
-              console.log(`\t${key}: \t${movie[key]}`);
-            });
-          });
-        });
-
-      function isPreposition(word) {
-        return word.length === 6 && /^([a-tv-z])+(d|x|s|m|p|f)$/i.test(word);
-      }
-
-      function prepositionCounter(total, word) {
-        return total + (isPreposition(word) ? 1 : 0);
-      }
-
-      function processText(text) {
-        const words = text.split(/\n|\r| /);
-        const count = words.reduce(prepositionCounter, 0);
-        return count;
-      }
-
-      function countPrepositions(event) {
-        event.preventDefault();
-        const text = document.getElementById('text-input').value;
-        console.log(`There are ${processText(text)} prepositions in the text`);
-      }
-    </script>
+    <p>Result: <span id="preps-result">---</span></p>
+    <h5 id="preps-list-title"></h5>
+    <ul id="preps-list"></ul>
+    <hr />
+    <script src="js/script.js"></script>
   </body>
 </html>
