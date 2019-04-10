@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Prueba JavaScript Kavak</h1>
+    <hr />
+    <h2>
+      The Googlon Language
+    </h2>
+    <p><small><i>En este ejercicio se necesita el código bien documentado con la
+        explicación del algoritmo paso a paso, justificando los resultados</i></small></p>
+    <p>
+      The Googlon Language Archaeologists found a scroll containing texts in the
+      ancient and mysterious Googlon language. After many years of study,
+      linguists have learned some of the fundamental characteristics of this
+      language:
+    </p>
+    <h3>Letter Classification</h3>
+    <p>
+      Googlon letters are classified in two groups: the letters u, d, x, s, m,
+      p, f are called "foo letters" while the other letters are called "bar
+      letters".
+    </p>
+    <h3>Prepositions</h3>
+    <p>
+      The linguists have discovered that in the Googlon language, the
+      prepositions are the words of exactly 6 letters which end in a foo letter
+      and do not contain the letter u.
+    </p>
+    <form>
+      <textarea id="text-input" rows="10" cols="100">
+          shoce pq podciy nfwh phfer epgdc dgsloqe do rhfl qhmoixw cmfur qdrulxogji whc ermjdhsx py en yco
+          ienqm wjuln dwuch qinhmjul mjxdqfrnlg iygsex qihmu grewyluhfs ucf us xclpedqmi yrx qinexwo qx rqw
+          wxflpdn rsogxd cpqmxj lgchqdin fdw nwcrus coj nj qplfjnwidg fwdmslqn cwj hysucxdqm ms hdmwpe
+          igxweo sqflo ycqlinro ghu hgecdfj mw xrpmyenq fgixsr fpwcnguieh fclgj ghepqyd jxhwe cejfugn ujxqh
+          ihncrl mlceo udr fm ocxfsjdng sfoqmd pdoymnwxei spqinedf ql ncsepfl icmqsdj chwjlg yiq ifl syejrqd
+          lwnepmcg xlmnfqry ghlyopuncw qx iw sionpux cop dmqpchuyf ojxfqhernm ignpeyf rseoyl emjocsild
+          rfimdy mwd oewgjfr uo irmcunfgx ylduwpsnh xrdng gcxr ng prfmjicud srdueqhgiy nmodwsqijh dcnql
+      </textarea>
+      <button onclick="countPrepositions(event)"></button>
+    </form>
+    <script>
+      fetch("https://facebook.github.io/react-native/movies.json")
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(myJson) {
+          myJson.movies.forEach((movie, index) => {
+            console.log(`Movie ${index}`);
+            Object.keys(movie).forEach(key => {
+              console.log(`\t${key}: \t${movie[key]}`);
+            });
+          });
+        });
+
+      function isPreposition(word) {
+        return word.length === 6 && /^([a-tv-z])+(d|x|s|m|p|f)$/i.test(word);
+      }
+
+      function prepositionCounter(total, word) {
+        return total + (isPreposition(word) ? 1 : 0);
+      }
+
+      function processText(text) {
+        const words = text.split(/\n|\r| /);
+        const count = words.reduce(prepositionCounter, 0);
+        return count;
+      }
+
+      function countPrepositions(event) {
+        event.preventDefault();
+        const text = document.getElementById('text-input').value;
+        console.log(`There are ${processText(text)} prepositions in the text`);
+      }
+    </script>
+  </body>
+</html>
